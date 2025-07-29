@@ -41,10 +41,12 @@ jobs:
 
     # - name: dotnet publish
     #   run: dotnet publish AspNetCoreTests/AspNetCoreTests.Web/*.csproj -c Release -o website
-    - name: Copy README to output folder
+    - name: Copy README.md to website folder
       shell: powershell
       run: |
-        Copy-Item -Path README.md -Destination website\
+        New-Item -Path website -ItemType Directory -Force
+        Copy-Item -Path README.md -Destination website
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
