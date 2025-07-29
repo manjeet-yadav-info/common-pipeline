@@ -1,4 +1,5 @@
 name: Build Project
+
 on:
   workflow_call:
     inputs:
@@ -19,22 +20,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+
     - name: Restore dependencies
       run: dotnet restore
       working-directory: AspNetCoreTests
+
     - name: Build
       run: dotnet build --configuration Release
       working-directory: AspNetCoreTests
+
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      working-directory: 'AspNetCoreTests'
+      working-directory: AspNetCoreTests
       continue-on-error: true
 
-    - name: dotnet publish 
+    - name: dotnet publish
       run: dotnet publish AspNetCoreTests/AspNetCoreTests.Web/*.csproj -c Release -o website
 
     - name: Upload Artifact
