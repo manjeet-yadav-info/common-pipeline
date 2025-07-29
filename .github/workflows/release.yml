@@ -16,7 +16,7 @@ on:
         type: string
         description: 'The name of the Azure web app'
       package_directory:
-        required: false
+        required: true
         type: string
         default: 'build_output'
         description: 'The directory containing the build files'
@@ -38,7 +38,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: BuildArtifacts
-        path: build_output
+        path: ${{ inputs.package_directory }}
 
     # - name: Deploy to Azure
     #   uses: azure/webapps-deploy@v2
