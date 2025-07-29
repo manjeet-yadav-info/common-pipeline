@@ -8,7 +8,7 @@ on:
         type: string
         description: 'The environment to deploy to (dev, QA, UAT, PROD)'
       APP_SERVICE_SECRET:
-        required: true
+        required: false  #enabled it when you use secrets
         type: string
         description: 'Azure publish profile (secret)'
       AZURE_WEBAPP_NAME:
